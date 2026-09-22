@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowLab — Air Resistance Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <header class="topbar">
+          <div class="brand"><span class="brand-mark"><i></i><i></i><i></i></span><span>FLOW<span>LAB</span></span></div>
+          <div class="simulation-status"><span class="pulse"></span> LIVE SIMULATION</div>
+          <div class="top-actions"><button class="icon-button" id="resetCamera" title="Reset camera">⌂</button><button class="export-button" id="exportButton">EXPORT DATA <span>↗</span></button></div>
+        </header>
+        <div class="canvas-wrap"><canvas id="renderCanvas"></canvas><div class="scene-tag"><span>MODEL SPACE</span><strong id="modelName">DEMO VEHICLE</strong></div><div class="axis-key"><b class="x">X</b><b class="y">Y</b><b class="z">Z</b></div><div class="drag-card"><span>ESTIMATED DRAG</span><strong id="dragValue">— N</strong><small id="dragDetail">Calculating flow field</small></div></div>
+        <footer class="timeline"><button id="playToggle" aria-label="Pause simulation">Ⅱ</button><div class="timeline-track"><span></span></div><span class="time-readout" id="timeReadout">00:00:00</span><span class="timeline-label">CONTINUOUS FLOW</span></footer>
+      </section>
+
+      <aside class="control-panel">
+        <div class="panel-heading"><div><p>ENVIRONMENT</p><h1>Airflow settings</h1></div><button id="helpButton" class="help-button">?</button></div>
+        <section class="setting-group"><div class="setting-title"><span>WIND SPEED</span><output id="speedOut">48 <em>km/h</em></output></div><input type="range" id="windSpeed" min="0" max="160" value="48" /><div class="range-labels"><span>0</span><span>160 km/h</span></div></section>
+        <section class="setting-group"><div class="setting-title"><span>WIND DIRECTION</span><output id="directionOut">270°</output></div><div class="direction-control"><div class="compass" id="compass"><div class="compass-ring"><i class="arrow"></i><b>N</b><b>E</b><b>S</b><b>W</b></div></div><div class="direction-copy"><strong id="windName">West</strong><small>Click dial to set</small></div></div></section>
+        <section class="setting-group compact"><div class="setting-title"><span>AIR DENSITY</span><output id="densityOut">1.225 <em>kg/m³</em></output></div><input type="range" id="airDensity" min="0.6" max="1.4" step="0.005" value="1.225" /><div class="range-labels"><span>0.6</span><span>1.4 kg/m³</span></div></section>
+        <section class="setting-group"><div class="setting-title"><span>MODEL ROTATION</span><output id="rotationOut">0°</output></div><input type="range" id="modelRotation" min="0" max="360" value="0" /><div class="range-labels"><span>0°</span><span>360°</span></div></section>
+        <section class="model-section"><div class="section-label">3D MODEL</div><label class="upload-box" for="modelUpload"><input id="modelUpload" type="file" accept=".glb,.gltf,.obj,.stl" /><span class="upload-icon">↑</span><strong>Import your model</strong><small>GLB, GLTF, OBJ or STL</small></label><div class="loaded-file" id="loadedFile"><span class="file-dot"></span><span>Demo vehicle</span><button id="restoreDemo" title="Restore demo">×</button></div></section>
+        <div class="panel-footer"><span><i></i> FLOW FIELD ACTIVE</span><small>v1.0.0</small></div>
+      </aside>
+    </main>
+    <div class="toast" id="toast">Flow report downloaded</div>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
+  </body>
+</html>
