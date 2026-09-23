@@ -1,6 +1,6 @@
 # FlowLab Air Resistance Studio
 
-A browser-based 3D airflow visualizer built with Flask and Babylon.js. Rotate and inspect a 3D model, change wind conditions, and view an estimated aerodynamic drag value alongside animated flow lines.
+A browser-based 3D airflow visualizer built with Flask and a dependency-free canvas renderer. Rotate and inspect a 3D model, change wind conditions, and view an estimated aerodynamic drag value alongside animated flow lines.
 
 ## Run locally
 
@@ -16,7 +16,7 @@ Open `http://127.0.0.1:5000` in a browser.
 ## Features
 
 - Orbit, zoom, and pan around a 3D scene using the mouse.
-- Import `.glb`, `.gltf`, `.obj`, or `.stl` model files from the side panel.
+- Import `.obj` or `.stl` model files from the side panel. The uploader gives clear feedback for unsupported formats rather than silently failing.
 - Tune wind speed, wind direction, air density, and model rotation.
 - Animated streamlines react to the selected wind direction.
 - Export the current simulation inputs and estimated drag result as JSON.
